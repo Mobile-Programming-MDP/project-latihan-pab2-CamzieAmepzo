@@ -8,17 +8,16 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Daftar Karyawan",
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.deepPurple,
-      )),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true),
       home: const MyHomePage(),
     );
   }
@@ -26,8 +25,13 @@ class MyWidget extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
+
+  //Karena Future bearti Asyncrounus
   Future<List<Karyawan>> _readJsonData() async {
+    //Untuk Menampung String dari JSON KARYAWAN
     String response = await rootBundle.loadString("assets/karyawan.json");
+
+    //decode -> Mengubah String JSON menjadi List<dynamic>
     final List<dynamic> data = json.decode(response);
     return data.map((json) => Karyawan.fromJson(json)).toList();
   }
@@ -40,25 +44,41 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Daftar Karyawan"),
       ),
       body: FutureBuilder<List<Karyawan>>(
-          future: _readJsonData(),
-          builder: (context, snapshot) {
+        future: _readJsonData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
             return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(snapshot.data![index].nama),
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                subtitle: Column (
-                  children: [
-                    
-                )
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      snapshot.data![index].nama,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Umur : ${snapshot.data![index].umur} tahun"),
+                        Text(
+                            "Alamat : ${snapshot.data![index].alamat.jalan}, ${snapshot.data![index].alamat.kota}, ${snapshot.data![index].alamat.provinsi},"),
+                        // if(snapshot.data![index].hobi.length > 1){
+                        //   Text("Hobby : ${snapshot.data![index].hobi[0]}"),
+                        // }
+                        Text("Hobby : ${snapshot.data![index].hobi[0]}"),
+                      ],
+                    ),
+                  );
+                });
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("Error: ${snapshot.error}"),
             );
-              },
-              );
-              else if (snapshot.hasError) {
-            return const Center(child: CircularProgressIndicator());
-          }),
+          }
+          return const Center(
+            child: CircularProgressIndicator(), //effect loading
+          );
+        },
+      ),
     );
   }
 }
