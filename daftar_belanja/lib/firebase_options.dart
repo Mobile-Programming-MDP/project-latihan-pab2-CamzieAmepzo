@@ -50,22 +50,24 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDBAyEewXXqdsikQ1YELRGmI3O-tKzwjPw',
-    appId: '1:914479160781:web:002e8ffd74bc387eccb884',
-    messagingSenderId: '914479160781',
-    projectId: 'first-app-42fb3',
-    authDomain: 'first-app-42fb3.firebaseapp.com',
-    databaseURL: 'https://first-app-42fb3-default-rtdb.firebaseio.com',
-    storageBucket: 'first-app-42fb3.firebasestorage.app',
-    measurementId: 'G-H2ZHFM3KFC',
+    apiKey: 'AIzaSyAHLMtFsWNmId0V8Pt8eSes3zvTeRjJbZ4',
+    appId: '1:118098998644:web:1895a62c6399fddb6a2821',
+    messagingSenderId: '118098998644',
+    projectId: 'first-app-jordi',
+    authDomain: 'first-app-jordi.firebaseapp.com',
+    databaseURL:
+        'https://first-app-jordi-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'first-app-jordi.firebasestorage.app',
+    measurementId: 'G-Q2V3J0L84Z',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDKfL4itX0aBLWHzuzv2_Jhcg8mSR4QxS4',
-    appId: '1:914479160781:android:64edb4b5260b74b5ccb884',
-    messagingSenderId: '914479160781',
-    projectId: 'first-app-42fb3',
-    databaseURL: 'https://first-app-42fb3-default-rtdb.firebaseio.com',
-    storageBucket: 'first-app-42fb3.firebasestorage.app',
+    apiKey: 'AIzaSyBByw7anl-h6Koy7VEV7JGtj1Pgcx8LCAk',
+    appId: '1:118098998644:android:77fccf1330bb7fb16a2821',
+    messagingSenderId: '118098998644',
+    projectId: 'first-app-jordi',
+    databaseURL:
+        'https://first-app-jordi-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'first-app-jordi.firebasestorage.app',
   );
 }
