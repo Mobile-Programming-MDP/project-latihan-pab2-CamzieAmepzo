@@ -50,22 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC3ai2RLeDkIVE1ouKIRAj54FADKM7EysI',
-    appId: '1:297417949941:web:3288fe179b3121c020bbbc',
-    messagingSenderId: '297417949941',
-    projectId: 'fasum-j',
-    authDomain: 'fasum-j.firebaseapp.com',
-    databaseURL: 'https://fasum-j-default-rtdb.firebaseio.com',
-    storageBucket: 'fasum-j.firebasestorage.app',
+    apiKey: 'AIzaSyAA1ZDo_obdJ9J6dTUUadX-7yWPlSPHb5s',
+    appId: '1:92662703615:web:ab29c5d80df3c7bb0233ca',
+    messagingSenderId: '92662703615',
+    projectId: 'fasum-apps-f376d',
+    authDomain: 'fasum-apps-f376d.firebaseapp.com',
+    storageBucket: 'fasum-apps-f376d.firebasestorage.app',
+    measurementId: 'G-MGBBL88KXZ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCGwtTC4MDmcLyI-H55ucEOc2w9jGzM37A',
-    appId: '1:297417949941:android:a890c1698a91914920bbbc',
-    messagingSenderId: '297417949941',
-    projectId: 'fasum-j',
-    databaseURL: 'https://fasum-j-default-rtdb.firebaseio.com',
-    storageBucket: 'fasum-j.firebasestorage.app',
+    apiKey: 'AIzaSyAo-oKdlNqEFsN0tOMH94tUQidUpyA7BAU',
+    appId: '1:92662703615:android:51d9a733f1ce18320233ca',
+    messagingSenderId: '92662703615',
+    projectId: 'fasum-apps-f376d',
+    storageBucket: 'fasum-apps-f376d.firebasestorage.app',
   );
 
 }

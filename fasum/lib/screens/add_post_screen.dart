@@ -54,18 +54,19 @@ class _AddPostScreenState extends State<AddPostScreen> {
       builder: (BuildContext context) {
         return ListView(
           shrinkWrap: true,
-          children: categories.map((category) {
-            return ListTile(
-              title: Text(category),
-              onTap: () {
-                setState(() {
-                  _aiCategory =
-                      category; // Ganti AI category dengan pilihan user
-                });
-                Navigator.pop(context);
-              },
-            );
-          }).toList(),
+          children:
+              categories.map((category) {
+                return ListTile(
+                  title: Text(category),
+                  onTap: () {
+                    setState(() {
+                      _aiCategory =
+                          category; // Ganti AI category dengan pilihan user
+                    });
+                    Navigator.pop(context);
+                  },
+                );
+              }).toList(),
         );
       },
     );
@@ -126,8 +127,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
       //RequestOptions ro = const RequestOptions(apiVersion: 'v1');
       final model = GenerativeModel(
         model: 'gemini-1.5-flash',
-        apiKey: 'AIzaSyDxMLBvU8zf1Ze9jAxTKx_RXzJjei08kq4',
-        //gunakan api key gemini anda
+        apiKey:
+            'AIzaSyDQTRu_cxwQ2cAhDiL7AL0-1UisN1hTROs', //gunakan api key gemini anda
         //requestOptions: ro,
       );
       final imageBytes = await _image!.readAsBytes();
@@ -241,7 +242,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
       await _getLocation();
       final userDoc =
           await FirebaseFirestore.instance.collection('users').doc(uid).get();
-      final fullName = userDoc.data()?['fullName'] ?? 'Anonymous';
+      final fullName = userDoc.data()?['fullname'] ?? 'Anonymous';
       await FirebaseFirestore.instance.collection('posts').add({
         'image': _base64Image,
         'description': _descriptionController.text,
@@ -249,7 +250,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         'createdAt': now,
         'latitude': _latitude,
         'longitude': _longitude,
-        'fullName': fullName,
+        'fullname': fullName,
         'userId': uid,
       });
       if (!mounted) return;
@@ -323,23 +324,24 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: _image != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(
-                          _image!,
-                          height: 250,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
+                child:
+                    _image != null
+                        ? ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.file(
+                            _image!,
+                            height: 250,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                        : const Center(
+                          child: Icon(
+                            Icons.add_a_photo,
+                            size: 50,
+                            color: Colors.grey,
+                          ),
                         ),
-                      )
-                    : const Center(
-                        child: Icon(
-                          Icons.add_a_photo,
-                          size: 50,
-                          color: Colors.grey,
-                        ),
-                      ),
               ),
             ),
             const SizedBox(height: 16),
@@ -428,20 +430,21 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 textStyle: const TextStyle(fontSize: 16),
                 backgroundColor: Colors.green,
               ),
-              child: _isUploading
-                  ? const SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.white,
+              child:
+                  _isUploading
+                      ? const SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white,
+                          ),
                         ),
+                      )
+                      : const Text(
+                        'Post',
+                        style: TextStyle(color: Colors.white),
                       ),
-                    )
-                  : const Text(
-                      'Post',
-                      style: TextStyle(color: Colors.white),
-                    ),
             ),
           ],
         ),
